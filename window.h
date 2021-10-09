@@ -68,20 +68,8 @@ class Window : public QWidget
 public:
     Window(MainWindow *mw);
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private slots:
-    void dockUndock();
-
-private:
-    QSlider *createSlider();
 
     GLWidget *glWidget;
-    QSlider *xSlider;
-    QSlider *ySlider;
-    QSlider *zSlider;
-    QPushButton *dockBtn;
     MainWindow *mainWindow;
 };
 
