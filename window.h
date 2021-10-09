@@ -53,11 +53,6 @@
 
 #include <QWidget>
 
-QT_BEGIN_NAMESPACE
-class QSlider;
-class QPushButton;
-QT_END_NAMESPACE
-
 class GLWidget;
 class MainWindow;
 
@@ -67,7 +62,8 @@ class Window : public QWidget
 
 public:
     Window(MainWindow *mw);
-
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
     GLWidget *glWidget;
     MainWindow *mainWindow;

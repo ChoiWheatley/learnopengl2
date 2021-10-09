@@ -76,3 +76,14 @@ Window::Window(MainWindow *mw)
 
     setWindowTitle(tr("Hello GL"));
 }
+
+void Window::closeEvent(QCloseEvent *event)
+{
+    if (event->spontaneous()) {
+        qDebug("The close button was clicked");
+        QWidget::closeEvent(event);
+    }
+    else {
+        QWidget::closeEvent(event);
+    }
+}

@@ -52,7 +52,7 @@
 #define GLWIDGET_H
 
 #include <QOpenGLWidget>
-#include "logo.h"
+// #include "logo.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 
@@ -76,6 +76,9 @@ protected:
     void resizeGL(int width, int height) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 private:
     void setupVertexAttribs();
@@ -85,7 +88,7 @@ private:
     int m_yRot = 0;
     int m_zRot = 0;
     QPoint m_lastPos;
-    Logo m_logo;
+    // Logo m_logo;
     QOpenGLShaderProgram *m_program = nullptr;
     int m_projMatrixLoc = 0;
     int m_mvMatrixLoc = 0;

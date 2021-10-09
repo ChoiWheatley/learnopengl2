@@ -53,6 +53,7 @@
 #include <QOpenGLShaderProgram>
 #include <QCoreApplication>
 #include <math.h>
+#include <stdlib.h>
 
 bool GLWidget::m_transparent = false;
 
@@ -67,6 +68,8 @@ GLWidget::GLWidget(QWidget *parent)
         fmt.setAlphaBufferSize(8);
         setFormat(fmt);
     }
+
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 GLWidget::~GLWidget()
@@ -149,6 +152,9 @@ void GLWidget::setupVertexAttribs()
 
 void GLWidget::paintGL()
 {
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    qDebug("hello, world");
 }
 
 void GLWidget::resizeGL(int w, int h)
@@ -157,9 +163,30 @@ void GLWidget::resizeGL(int w, int h)
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
-    m_lastPos = event->pos();
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
+    m_lastPos = event->pos();
+    qDebug() << m_lastPos;
+}
+
+void GLWidget::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << event->key();
+    if (event->key() == Qt::Key_Escape)
+    {
+        qDebug() << "esc has pressed";
+        QWidget::close();
+    }
+}
+
+void GLWidget::keyReleaseEvent(QKeyEvent *event)
+{
+
+}
+
+void GLWidget::closeEvent(QCloseEvent *event)
+{
+    qDebug() << "ByeBye~~\n";
 }
