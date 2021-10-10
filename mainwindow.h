@@ -52,6 +52,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "window.h"
 
 class MainWindow : public QMainWindow
 {
@@ -62,6 +63,12 @@ public:
 
 private slots:
     void onAddNew();
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
+private:
+    Window *m_window;
 };
 
 #endif

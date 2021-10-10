@@ -70,6 +70,7 @@ GLWidget::GLWidget(QWidget *parent)
     }
 
     setFocusPolicy(Qt::StrongFocus);
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 GLWidget::~GLWidget()
@@ -178,6 +179,7 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
     {
         qDebug() << "esc has pressed";
         QWidget::close();
+    } else {
     }
 }
 

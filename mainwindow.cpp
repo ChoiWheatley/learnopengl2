@@ -53,16 +53,21 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QMessageBox>
+#include <QEvent>
+#include <QDebug>
 
 MainWindow::MainWindow()
 {
     QMenuBar *menuBar = new QMenuBar;
     QMenu *menuWindow = menuBar->addMenu(tr("&Window"));
     QAction *addNew = new QAction(menuWindow);
+    m_window = new Window(this);
     addNew->setText(tr("Add new"));
     menuWindow->addAction(addNew);
     connect(addNew, &QAction::triggered, this, &MainWindow::onAddNew);
     setMenuBar(menuBar);
+
+    m_window->installEventFilter(this);
 
     onAddNew();
 }
@@ -70,8 +75,19 @@ MainWindow::MainWindow()
 void MainWindow::onAddNew()
 {
     if (!centralWidget())
-        setCentralWidget(new Window(this));
+        setCentralWidget(m_window);
     else
         QMessageBox::information(nullptr, tr("Cannot add new window"),
                                  tr("Already occupied. Undock first."));
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj == m_window) {
+        if (event->type() == QEvent::Close) {
+            qDebug() << "[MainWindow] closed";
+            QMainWindow::close();
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }

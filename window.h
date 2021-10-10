@@ -64,6 +64,7 @@ public:
     Window(MainWindow *mw);
 protected:
     void closeEvent(QCloseEvent *event) override;
+    bool eventFilter(QObject *object, QEvent *event) override;
 
     GLWidget *glWidget;
     MainWindow *mainWindow;
