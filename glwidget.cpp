@@ -177,7 +177,6 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
     qDebug() << event->key();
     if (event->key() == Qt::Key_Escape)
     {
-        qDebug() << "esc has pressed";
         QWidget::close();
     } else {
     }

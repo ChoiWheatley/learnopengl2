@@ -85,7 +85,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == m_window) {
         if (event->type() == QEvent::Close) {
-            qDebug() << "[MainWindow] closed";
             QMainWindow::close();
         }
     }

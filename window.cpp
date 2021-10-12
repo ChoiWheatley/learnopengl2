@@ -94,14 +94,8 @@ bool Window::eventFilter(QObject *object, QEvent *event)
 {
     if (object == glWidget){
         if (event->type() == QEvent::Close) {
-            qDebug() << "[Window] close received!";
             QWidget::close();
             return true;
-        }
-        if (event->type() == QEvent::KeyPress) {
-            QKeyEvent *e = static_cast<QKeyEvent*>(event);
-            qDebug() << "[Window] key received: " << e->key();
-            return false;
         }
     }
     return QObject::eventFilter(object, event);
