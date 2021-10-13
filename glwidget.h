@@ -95,6 +95,12 @@ private:
     int m_normalMatrixLoc = 0;
     int m_lightPosLoc = 0;
     static bool m_transparent;
+
+    unsigned int m_vertexShader;
+    unsigned int m_fragmentShader;
+    unsigned int m_shaderProgram;
+    unsigned int m_VBO; // Vertex Buffer Object
+    unsigned int m_VAO; // Vertex Array Object
 };
 
 #endif
